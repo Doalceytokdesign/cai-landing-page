@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.A.I. | Central de Angariações Imobiliárias</title>
+    
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --brand-copper: #c88c6c;
+            --brand-copper-dim: rgba(200, 140, 108, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 2rem 5%;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+        }
+        .logo-img { height: 40px; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { 
+            color: var(--text-main); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            transition: color 0.3s; 
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        nav a:hover { color: var(--brand-copper); }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.4; /* Mais opacidade para destacar o texto e deixar clean */
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(10,10,10,0.1) 0%, var(--bg-dark) 100%);
+            z-index: -1;
+        }
+        .hero-content {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .hero h2 {
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            font-weight: 400;
+            letter-spacing: 10px;
+            color: var(--brand-copper);
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+        
+        .hero-icons {
+            display: flex;
+            gap: 4rem;
+            margin-top: 5rem;
+        }
+        .hero-icons a {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            transition: opacity 0.3s, color 0.3s, transform 0.3s;
+        }
+        .hero-icons a i {
+            font-size: 1.8rem;
+        }
+        .hero-icons a:hover {
+            opacity: 1;
+            color: var(--brand-copper);
+            transform: translateY(-5px);
+        }
+
+        /* APP INTERFACE / GRID SECTION */
+        .app-section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .app-header-image {
+            width: 100%;
+            height: 55vh;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid #1f1f1f;
+            padding: 3.5rem 2.5rem;
+            border-radius: 4px;
+            transition: border-color 0.4s, transform 0.4s;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .card:hover {
+            border-color: var(--brand-copper);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: var(--brand-copper);
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        .card-link {
+            color: var(--brand-copper);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* GALLERY SECTION */
+        .gallery-section {
+            padding: 6rem 5%;
+            background-color: #050505;
+        }
+        .gallery-title {
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .gallery-title span { color: var(--brand-copper); }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: opacity 0.4s, transform 0.4s;
+            cursor: pointer;
+        }
+        .gallery-item:hover { 
+            opacity: 0.7;
+            transform: scale(0.98);
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 5rem 5%;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            background-color: var(--bg-dark);
+        }
+        .footer-logo { height: 35px; margin-bottom: 2.5rem; }
+        .footer-text { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
+
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .hero-icons { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#"><img src="logo.png" alt="CAI Logo" class="logo-img"></a>
+        <nav>
+            <ul>
+                <li><a href="#app"><i class="fa-solid fa-bars"></i> Acesso Restrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="hero-cai.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h2>Central de Angariações Imobiliárias</h2>
+            <h1>C.A.I.</h1>
+            <div class="hero-icons">
+                <a href="#app">
+                    <i class="fa-solid fa-fingerprint"></i>
+                    Acesso
+                </a>
+                <a href="#app">
+                    <i class="fa-solid fa-gem"></i>
+                    Portfólio
+                </a>
+                <a href="#app">
+                    <i class="fa-solid fa-globe"></i>
+                    Network
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- APP INTERFACE (TABLET MOCKUP LAYOUT) -->
+    <section id="app" class="app-section">
+        <!-- Imagem de topo como no mockup do aplicativo -->
+        <img src="fachada.png" alt="Fachada CAI Asset" class="app-header-image">
+
+        <div class="grid-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <i class="fa-solid fa-layer-group card-icon"></i>
+                <h3>Property Matching</h3>
+                <p>Cruzamento analítico de preferências arquitetônicas e KPIs financeiros. Removemos o atrito no mercado imobiliário entregando apenas ativos com probabilidade de fechamento superior a 90%.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <i class="fa-solid fa-chart-pie card-icon"></i>
+                <h3>Asset Portfolio</h3>
+                <p>Dashboards executivos para gestão de performance de ativos de luxo, projetados para a clareza exigida por family offices e gestoras.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <i class="fa-solid fa-network-wired card-icon"></i>
+                <h3>Network Access</h3>
+                <p>Uma malha invisível de conexões premium. A CAI abre portas diretas a fundos de investimento e corretores black-tier globais, orquestrando negócios.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <i class="fa-solid fa-bed card-icon"></i>
+                <h3>Luxury Property</h3>
+                <p>Mapeamento de ativos de luxo off-market com potencial de valorização imediata. Exclusividade absoluta nas transações de propriedades singulares.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Card 5 -->
+            <div class="card">
+                <i class="fa-solid fa-lock card-icon"></i>
+                <h3>Asset Negotiation</h3>
+                <p>Canais de negociação criptografados e confidenciais. Assessoria jurídica e estrutural completa para garantir fechamentos seguros e discretos.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <!-- Card 6 -->
+            <div class="card">
+                <i class="fa-solid fa-chart-line card-icon"></i>
+                <h3>Profit Share</h3>
+                <p>Estruturação de fundos e consórcios exclusivos para cotização de propriedades. Maximice o retorno com estratégias de holding patrimonial.</p>
+                <a href="#" class="card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGES GALLERY SECTION -->
+    <section class="gallery-section">
+        <h2 class="gallery-title">Assets <span>Premium</span></h2>
+        <div class="gallery-grid">
+            <img src="living.png" alt="Living Room de Alto Padrão" class="gallery-item">
+            <img src="piscina com borda infinita.png" alt="Piscina com Borda Infinita" class="gallery-item">
+            <img src="cozinha gourmet.png" alt="Cozinha Gourmet Exclusiva" class="gallery-item">
+            <img src="hall.png" alt="Hall de Entrada Imponente" class="gallery-item">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <img src="logo.png" alt="CAI Logo" class="footer-logo">
+        <div class="footer-text">
+            &copy; 2026 C.A.I. - CENTRAL DE ANGARIAÇÕES IMOBILIÁRIAS.<br>ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+</body>
+</html>
