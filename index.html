@@ -20,13 +20,13 @@
         :root {
             /* Colors */
             --color-bg-primary: #000000;
-            --color-bg-secondary: #0a0a0a;
-            --color-bg-card: #121212;
-            --color-copper: #c88c6c;
-            --color-copper-dim: rgba(200, 140, 108, 0.15);
+            --color-bg-secondary: #000000; /* Fundo totalmente preto */
+            --color-bg-card: #000000; /* Cards pretos */
+            --color-copper: #c58b68; /* Dourado/Bege/Marrom exato da logo */
+            --color-copper-dim: rgba(197, 139, 104, 0.15);
             --color-text-primary: #ffffff;
-            --color-text-secondary: #888888;
-            --color-border: #1f1f1f;
+            --color-text-secondary: #999999;
+            --color-border: #33241b; /* Borda levemente dourada/marrom bem escura */
 
             /* Typography */
             --font-display: 'Syne', sans-serif;
@@ -70,8 +70,6 @@
         .logo-img { 
             height: 90px; /* Logo aumentada conforme solicitado */
             object-fit: contain;
-            /* Se a logo tiver fundo que não seja exatamente igual, isso mistura perfeitamente com o fundo escuro */
-            mix-blend-mode: screen; 
             transition: transform var(--transition-smooth);
         }
         
@@ -272,7 +270,7 @@
             border-top: 1px solid var(--color-border);
             background-color: var(--color-bg-primary);
         }
-        .footer-logo { height: 45px; margin-bottom: 2.5rem; mix-blend-mode: screen; }
+        .footer-logo { height: 45px; margin-bottom: 2.5rem; }
         .footer-text { color: var(--color-text-secondary); font-size: 0.85rem; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
@@ -285,7 +283,7 @@
 
     <!-- HEADER -->
     <header>
-        <a href="#"><img src="logo.png" alt="CAI Logo" class="logo-img"></a>
+        <a href="#"><img src="logo_transparent.png" alt="CAI Logo" class="logo-img"></a>
         <nav>
             <ul>
                 <li><a href="#app"><i class="fa-solid fa-bars"></i> Acesso Restrito</a></li>
